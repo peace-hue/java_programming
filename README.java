@@ -58,6 +58,7 @@ public class supermarketbills {
 }
 
 
+	
 Q2.package supermarket;
 
 import java.util.Scanner;
@@ -133,78 +134,86 @@ public class studentrecordingmarks {
 }
 
 
-package supermarket;
+Q3.package supermarket;
 
 import java.util.Scanner;
 
-public class studentrecordingmarks {
+public class attendancereport {
+
+	
 	public static void main(String[] args) {
+		
+		Scanner att=new Scanner(System.in);
 
-		Scanner abc=new Scanner(System.in);
+		        // 1. Ask for total number of students
+		        System.out.print("Enter total number of students in the class: ");
+		        int totalStudents = att.nextInt();
 
-		int totalStudents = 0;
-		int passes = 0;
-		int fails = 0;
+		        // Array to store attendance for up to 30 days
+		        int[] attendance = new int[30];
+		        int dayCount = 0;
 
-		while (true) {
+		        String moreDays;
 
-			System.out.print("Enter student marks (0-100), or enter -1 to stop: ");
-			int marks =abc.nextInt();
+		        // 2. Use do-while loop to record attendance for each day
+		        do {
+		            if (dayCount == 30) {
+		                System.out.println("Maximum of 30 days reached.");
+		                break;
+		            }
+
+		            System.out.print("Enter number of students present on Day " + (dayCount + 1) + ": ");
+		            int present = att.nextInt();
+
+		            // Validate input
+		            if (present < 0 || present > totalStudents) {
+		                System.out.println("Invalid number of students present. Please enter a number between 0 and " + totalStudents);
+		                continue;  // skip to next iteration without incrementing dayCount
+		            }
+
+		            attendance[dayCount] = present;
+		            dayCount++;
+
+		           att.nextLine(); // consume newline
+
+		            System.out.print("Do you want to enter attendance for another day? (yes/no): ");
+		            moreDays = att.nextLine().trim().toLowerCase();
+
+		        } while (moreDays.equals("yes"));
+
+		        // 3. After data entry is complete:
+		        // Calculate average attendance
+		        int totalAttendance = 0;
+		        int lowAttendanceDays = 0;
+		        double halfClass = totalStudents / 2.0;
+
+		        System.out.println("\nAttendance Summary:");
+		        System.out.println("-------------------");
+		        System.out.println("Day\tNumber Present");
+
+		        for (int i = 0; i < dayCount; i++) {
+		            System.out.println((i + 1) + "\t" + attendance[i]);
+		            totalAttendance += attendance[i];
+
+		            if (attendance[i] < halfClass) {
+		                lowAttendanceDays++;
+		            }
+		        }
+
+		        double averageAttendance = (dayCount > 0) ? (double) totalAttendance / dayCount : 0;
+		        double lowAttendancePercent = (dayCount > 0) ? (double) lowAttendanceDays / dayCount * 100 : 0;
+
+		        System.out.println("\nAverage attendance: %.2f students\n", averageAttendance);
+		        System.out.println("Days with attendance below 50%%: %d out of %d days (%.2f%%)\n", lowAttendanceDays, dayCount, lowAttendancePercent);
+
+		        att.close();
+		    }
+		
 
 
-			if (marks == -1) {
-				break;
-			}
-
-
-			if (marks < 0 || marks > 100) {
-				System.out.println("Invalid marks. Please enter a value between 0 and 100.");
-				continue;
-			}
-			totalStudents++;
-
-			char grade;
-			if (marks >= 80) {
-				grade = 'A';
-			} else if (marks >= 70) {
-				grade = 'B';
-			} else if (marks >= 60) {
-				grade = 'C';
-			} else if (marks >= 50) {
-				grade = 'D';
-			} else {
-				grade = 'F';
-			}
-
-			System.out.println("Student's grade: " + grade);
-
-
-			if (marks >= 50) {
-				passes++;
-			} else {
-				fails++;
-			}
-		}
-
-
-		System.out.println("\nSummary Report:");
-		System.out.println("Total students: " + totalStudents);
-		System.out.println("Passed: " + passes);
-		System.out.println("Failed: " + fails);
-
-
-		if (totalStudents > 0) {
-			double passRate = (double) passes / totalStudents * 100;
-			System.out.println("Class pass rate: " + passRate + "%");
-		} else {
-			System.out.println("No students entered.");
-		}
-
-		abc.close();
 	}
 
 
-
-}
+		
 
 

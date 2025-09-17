@@ -45,7 +45,7 @@ public class supermarketbills {
 		System.out.println(totalBill);
 		System.out.println(amount);
 		System.out.println(finalAmount);
-		System.out.println("Thank you for using calculator!");
+		System.out.println("Thank you for visiting us!");
 		Sc.close();
 
 	}

@@ -145,17 +145,17 @@ public class attendancereport {
 		
 		Scanner att=new Scanner(System.in);
 
-		        // 1. Ask for total number of students
+		       
 		        System.out.print("Enter total number of students in the class: ");
 		        int totalStudents = att.nextInt();
 
-		        // Array to store attendance for up to 30 days
+		        
 		        int[] attendance = new int[30];
 		        int dayCount = 0;
 
 		        String moreDays;
 
-		        // 2. Use do-while loop to record attendance for each day
+		       
 		        do {
 		            if (dayCount == 30) {
 		                System.out.println("Maximum of 30 days reached.");
@@ -165,24 +165,24 @@ public class attendancereport {
 		            System.out.print("Enter number of students present on Day " + (dayCount + 1) + ": ");
 		            int present = att.nextInt();
 
-		            // Validate input
+		            
 		            if (present < 0 || present > totalStudents) {
 		                System.out.println("Invalid number of students present. Please enter a number between 0 and " + totalStudents);
-		                continue;  // skip to next iteration without incrementing dayCount
+		                continue; 
 		            }
 
 		            attendance[dayCount] = present;
 		            dayCount++;
 
-		           att.nextLine(); // consume newline
+		           att.nextLine(); 
 
 		            System.out.print("Do you want to enter attendance for another day? (yes/no): ");
 		            moreDays = att.nextLine().trim().toLowerCase();
 
 		        } while (moreDays.equals("yes"));
 
-		        // 3. After data entry is complete:
-		        // Calculate average attendance
+		        
+		       
 		        int totalAttendance = 0;
 		        int lowAttendanceDays = 0;
 		        double halfClass = totalStudents / 2.0;

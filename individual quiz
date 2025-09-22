@@ -1,0 +1,90 @@
+import java.util.Scanner;
+
+import com.sun.corba.se.spi.orbutil.fsm.Input;
+public class assignment1 {
+
+
+	public static void main(String[] args) {
+
+		Scanner input=new Scanner(System.in);
+		char cont;
+		do{
+			//select shape
+			System.out.println("Select shape:");
+			System.out.println("1. Rectangle:");
+			System.out.println("2. Circle:");
+			System.out.println("3. Square");
+			System.out.println("4. Triangle");
+			int choice=input.nextInt();
+			//select what you want to calculate
+			System.out.println("What would you like to calculate?");
+			System.out.println("A. Area");
+			System.out.println("B. Perimeter");
+			char calc=input.next().toUpperCase().charAt(0);
+
+			switch(choice){
+			case 1://Rectangle
+				System.out.println("Enter length:");
+			double length=input.nextDouble();
+			System.out.println("Enter width:");
+			double width=input.nextDouble();
+			if(calc=='A'){
+				System.out.println("Area of Rectangle="+length*width);
+			}
+			else{
+				System.out.println("Perimeter of Rectangle="+2*(length+width));
+			}
+			break;
+			case 2://Circle
+				System.out.println("Enter Radius:");
+			double r=input.nextDouble();
+			if(calc=='A'){
+				System.out.println("Area of Circle="+Math.PI*(r*r));
+			}
+			
+			else{
+				System.out.println("Circumference of Circle="+2*Math.PI*r);
+			}
+			break;
+			case 3://Square
+				System.out.println("Enter Side:");
+			double side=input.nextDouble();
+			if(calc=='A'){
+				System.out.println("Area of Square="+side*side);
+			}
+			else{
+				System.out.println("Perimeter of Square="+4*side);
+			}
+			break;
+			case 4://Triangle
+				System.out.println("Enter base:");
+			double bs=input.nextDouble();
+			System.out.println("Enter height:");
+			double ht=input.nextDouble();
+			if(calc=='A'){
+				System.out.println("Area of Triangle="+(bs*ht)/2);
+			}
+			else{
+				System.out.println("Enter side 1:");
+				double sd1=input.nextDouble();
+				System.out.println("Enter side 2:");
+				double sd2=input.nextDouble();
+				System.out.println("Enter side 3:");
+				double sd3=input.nextDouble();
+			
+				System.out.println("Perimeter of Triangle="+sd1+sd2+sd3);
+			}
+			break;
+			default:
+				System.out.println("Invalid choice");
+			}
+		System.out.println("Would You like to continue?(Y/N)");
+		cont=input.next().toUpperCase().charAt(0);
+		}
+while(cont=='Y');
+	System.out.println("Thank You!");
+	
+
+	}
+
+}
